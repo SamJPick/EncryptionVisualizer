@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Encryption Visualizer by Sam Pick</title>
+</head>
+<body id="page">
+<div id="mainMenuContainer">
+    <p class="bigLabel">Welcome to Sam Pick's Encryption Visualizer! Which algorithm would you like to learn about?</p>
+    <div class="hContainer">
+        <div class="vContainer">
+            <button class="menuButton" onclick="goToAESInfo1()">AES</button>
+    	    <div class = "vertLabelContainer">
+                <p class="vertLabel">A<br>D<br>V<br>A<br>N<br>C<br>E<br>D</p>
+                <p class="vertLabel">E<br>N<br>C<br>R<br>Y<br>P<br>T<br>I<br>O<br>N</p>
+                <p class="vertLabel">S<br>T<br>A<br>N<br>D<br>A<br>R<br>D</p>
+            </div>
+        </div>
+        <div class="vContainer">
+            <button class="menuButton" onclick="goToRSAInfo1()">RSA</button>
+            <div class = "vertLabelContainer">
+                <p class="vertLabel">R<br>I<br>V<br>E<br>S<br>T</p>
+                <p class="vertLabel">S<br>H<br>A<br>M<br>I<br>R</p>
+                <p class="vertLabel">A<br>D<br>L<br>E<br>M<br>A<br>N</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display: none;" id="AESInfo1Container">
+    <p class="bigLabel">ADVANCED ENCRYPTION STANDARD</p>
+    <p class="label">(A.K.A. Rijndael)</p>
+    <div class="hContainer">
+    	<img class="diagram" src="https://lh3.googleusercontent.com/drive-viewer/AEYmBYRs1fPdyKVMVKJdjBdV0nMnTfRRVJ8HZxqNJWB-nSN14PrGBtN5YbxWdlkOcdyWvKz2rY35kIIRKX5h_gHhSkO5xUvB=s1600" alt="Visual of symmetric-key encryption">
+        <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/5/50/AES_%28Rijndael%29_Round_Function.png" alt="Diagram of an AES round">
+    </div>
+    <p class="blurb">
+        AES is a symmetric encryption algorithm, meaning that it secures a 
+        connection between two computers such that they can both use a shared 
+        key to encrypt and decrypt data. The version I wrote is called AES-128, 
+        as the keys are 128 bits (zeros and ones) long. AES is used by:
+    </p>
+    <ul class="blurb">
+        <li>The U.S. government</li>
+        <li>Google</li>
+        <li>Zoom</li>
+        <li>VPNs</li>
+        <li>Many other things!</li>
+    </ul>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToHome()">Home</button>
+        <button class="forwardButton" onclick = "goToAESInfo2()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="AESInfo2Container">
+    <p class="label">AES-128 is based on manipulating data in a 4x4 array. It does this by repeating four unique steps:</p>
+    <div class="hContainer">
+        <div class="vContainer">
+            <img class="diagram2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/AES-SubBytes.svg/800px-AES-SubBytes.svg.png" alt="A diagram of SubBytes">
+            <p class="smallLabel">SubButes: Substitute each item in the array for another based on its value</p>
+        </div>
+        <div class="vContainer">
+            <img class="diagram2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/AES-ShiftRows.svg/800px-AES-ShiftRows.svg.png" alt="A diagram of ShiftRows">
+            <p class="smallLabel">ShiftRows: Rotate the rows by different amounts to the left</p>
+        </div>
+    </div>
+    <div class="hContainer">
+        <div class="vContainer">
+            <img class="diagram2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/AES-MixColumns.svg/800px-AES-MixColumns.svg.png" alt="A diagram of MixColumns">
+            <p class="smallLabel">MixColumns: Use predetermined math operations to mix all of the data in each column</p>
+        </div>
+        <div class="vContainer">
+            <img class="diagram2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/AES-AddRoundKey.svg/771px-AES-AddRoundKey.svg.png" alt="A diagram of AddRoundKey">
+            <p class="smallLabel">AddRoundKey: Use the key to mix each item in the array</p>
+        </div>
+    </div>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToAESInfo1()">Previous</button>
+        <button class="forwardButton" onclick="goToAESDemo1()">Next</button>
+    </div>
+</div>
+<div style="display: none;", id="AESDemo1Container">
+    <p class="label">
+        Try out AES! Tap the text box below and enter a short message.
+    </p>
+    <div class="hContainer">
+        <textarea class="messageInput" id="AESMsgInput"></textarea>
+        <button class="sendMessageButton" onclick="setMsgAES()">Send</button>
+    </div>
+    <br><br><br>
+    <div class="hContainer">
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable1">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">The (first) 16 bytes of your message</p>
+        </div>
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable2">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">The key</p>
+            <button class="generatorButton" onclick="runAES(true);" id="runAESButton">Make new key</button>
+        </div>
+    </div>
+    <br><br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToAESInfo2()">Previous</button>
+        <button class="lockedForwardButton" onclick="goToAESDemo2()" id="AESDemo1ForwardButton">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="AESDemo2Container">
+    <p class="label">
+        Before we get into the rounds, we scramble the mesage using both the 
+        key and another value called an initialization vector.
+    </p>
+    <div class="hContainer">
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable3">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">
+                Message after applying IV. You can think of the IV as a second 
+                key, as it is also a randomly generated 128-bit number.
+            </p>
+        </div>
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable4">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">
+                Message after applying key. From now on, the key will actually 
+                change before each use of it.
+            </p>
+        </div>
+    </div>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToAESDemo1()">Previous</button>
+        <button class="forwardButton" onclick="goToAESDemo3()">Next</button>
+    </div>
+</div>
+<div style="display: none" id="AESDemo3Container">
+    <p class="label">These four main rounds are repeated several times.</p>
+    <div class="hContainer">
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable6">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">Message after SubBytes: values change via constant table</p>
+        </div>
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable7">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">Message after ShiftRows: values move left</p>
+        </div>
+    </div>
+    <div class="hContainer">
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable8">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">Message after MixColumns: columns change via specific math</p>
+        </div>
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable9">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">Message after AddRoundKey: values change via key</p>
+        </div>
+    </div>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToAESDemo2()">Previous</button>
+        <button class="forwardButton" onclick="goToAESDemo4()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="AESDemo4Container">
+    <p class="label">After all rounds, the (first) 16 bytes of the message are:</p>
+    <div class="hContainer">
+        <table class="AESMatrix" id="AESTable10">
+            <tr class="AESMatrix">
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+            </tr>
+            <tr class="AESMatrix">
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+            </tr>
+            <tr class="AESMatrix">
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+            </tr>
+            <tr class="AESMatrix">
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <p class="blurb">
+        Encryption of your message is now finished. If your message had more 
+        than 16 characters, then AES is actually run more than once. This is 
+        done by repeating the same algorithm for each 16-character chunk of the 
+        message, but having every iteration except the first one use the output 
+        of the last iteration as its initialization vector. The use of this 
+        technique is called a cipher block chain (not to be confused with 
+        a blockchain).
+        <br><br>
+        If your device and another shared a key, you would be able to send 
+        this encrypted data, and the other device would be able to decrypt it. 
+        Decryption involves doing the inverse of every step of encryption. For 
+        example, ShiftRows will move values to the right rather than the left, 
+        and it will come before subBytes. Continue to see how decryption works.
+    </p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToAESDemo3()">Previous</button>
+        <button class="forwardButton" onclick="goToAESDemo5()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="AESDemo5Container">
+    <p class="label">The main decryption rounds are very similar to those in encryption.</p>
+    <div class="hContainer">
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable11">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">Message after AddRoundKey: exact same operation as in encryption, as it is its own inverse</p>
+        </div>
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable12">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">Message after MixColumns: columns change via slightly different math</p>
+        </div>
+    </div>
+    <div class="hContainer">
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable13">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">Message after ShiftRows: rows move right now</p>
+        </div>
+        <div class="vContainer">
+            <table class="AESMatrix" id="AESTable14">
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+                <tr class="AESMatrix">
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                    <td class="AESMatrix">00</td>
+                </tr>
+            </table>
+            <p class="smallLabel">Message after SubBytes: values change via the inverse of the table used in encryption</p>
+        </div>
+    </div>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToAESDemo4()">Previous</button>
+        <button class="forwardButton" onclick="goToAESDemo6()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="AESDemo6Container">
+    <p class="label">After applying the first key and IV, the final bytes, and the (first) 16 bytes of your message, are:</p>
+    <div class="hContainer">
+        <table class="AESMatrix" id="AESTable15">
+            <tr class="AESMatrix">
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+            </tr>
+            <tr class="AESMatrix">
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+            </tr>
+            <tr class="AESMatrix">
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+            </tr>
+            <tr class="AESMatrix">
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+                <td class="AESMatrix">00</td>
+            </tr>
+        </table>
+    </div>
+    <div class="finalMsgDisplay" ><p id="AESFinalMsgDisplay"></p></div>
+    <p class="blurb">
+        That is the entire AES process! This algorithm is capable of encrypting 
+        far more than only text, though. Any data stored on computers is really 
+        just a lot of ones and zeros, after all. AES is an immensely strong 
+        candidate for an algorithm to encrypt a communication channel between 
+        devices that share the same levels of access to data and keys. The 
+        other section of this app does a similar deep dive into the RSA 
+        algorithm, which is asymmetric and very different from AES. 
+    </p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToAESDemo5()">Previous</button>
+        <button class="forwardButton" onclick="goToHome()">Home</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo1Container">
+    <p class="bigLabel2">Rivest-Shamir-Adleman</p>
+    <div class="hContainer">
+        <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Public-key-crypto-1.svg/432px-Public-key-crypto-1.svg.png" alt="Diagram of public key generation">
+        <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Public_key_encryption.svg/788px-Public_key_encryption.svg.png" alt="Diagram of data transfer with public-key cryptography">
+    </div>
+    <p class="blurb2">
+        RSA is an asymmetric, public-key encryption algorithm. This means that 
+        there are actually two different keys that are used: a public key and a 
+        private key. As opposed to AES, where each connected computer is both a 
+        sender and receiver of data, RSA makes it so that one computer is the 
+        sender and one the receiver. 
+        <br><br>
+        The idea is that a sender's public key can be known to anyone, and that 
+        this allows many computers to send encrypted data to the same receiver 
+        via the same key, all without compromising security as the receiver's 
+        private key never needs to be communicated. 
+        <br><br>
+        The public key is mathematically linked to the private key in such a 
+        way that the public key can be easily derived from the private key, but 
+        vice versa is highly inefficient to the point of effectively being 
+        impossible (that is, until quantum computing hits the mainstream with 
+        its ludicrous speed).
+        <br><br>
+        Though not quite as efficient as an algorithm like AES, RSA's different 
+        functionality still gives it several use cases in general internet 
+        security. These may include:
+    </p>
+    <ul class="blurb2">
+        <li>Messaging systems</li>
+        <li>Authentication for shared messages and files</li>
+        <li>Secure connections to websites</li>
+    </ul>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToHome()">Home</button>
+        <button class="forwardButton" onclick="goToRSAInfo2()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo2Container">
+    <p class="label2">
+        RSA is based entirely on number theory. Here are the most important 
+        numerical values to remember in RSA:
+    </p>
+    <ul class="blurb2">
+        <li>p: A random prime number</li>
+        <li>q: Another random prime number</li>
+        <li>n: The key modulus</li>
+        <li>λ(n): Carmichael's totient function of n</li>
+        <li>e: The public key exponent</li>
+        <li>d: The private key exponent</li>
+        <li>c: The encrypted message</li>
+        <li>m: The decrypted, original message</li>
+    </ul>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo1()">Previous</button>
+        <button class="forwardButton" onclick="goToRSAInfo3()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo3Container">
+    <p class="label2">To start off, a quick refresher on prime numbers.</p>
+    <p class="bigLabel">p = 83</p>
+    <p class="bigLabel">q = 127</p>
+    <p class="blurb2">
+        A prime number is a number whose only factors are 1 and itself. That 
+        is, no other numbers can be multiplied to get that number as a product.
+        83 and 127 are examples of such numbers, so we can make them p and q.
+    </p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo2()">Previous</button>
+        <button class="forwardButton" onclick="goToRSAInfo4()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo4Container">
+    <p class="label2">Next, n and λ(n) are calculated.</p>
+    <p class="bigLabel">n = 10541</p>
+    <p class="bigLabel">λ(n) = 5166</p>
+    <p class="blurb2">
+        n is simply the product of p &times; q. λ(n) is a bit more complicated; 
+        λ is a complex function, but thankfully, RSA has a shortcut for it.
+        <br><br>
+        For RSA's purposes, λ(n) equals the least common multiple of (p - 1) 
+        and (q - 1). A multiple of a given number is a number of which that 
+        given number is a factor. The least common multiple of two given 
+        numbers, then, is the smallest positive whole number of which both of 
+        those given numbers are a factor.
+        <br><br>
+        83 &times; 127 = 10541, so that will be the value of n. The least 
+        common multiple of 82 and 126 is 5166, so that will be the value of 
+        λ(n).
+    </p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo3()">Previous</button>
+        <button class="forwardButton" onclick="goToRSAInfo5()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo5Container">
+    <p class="label2">Next, e is generated.</p>
+    <p class="bigLabel">e = 3457</p>
+    <p class="blurb2">In RSA, e is randomly generated, but with the following restrictions:</p>
+    <ul class="blurb2">
+        <li>2 &lt; e &lt; λ(n)</li>
+        <li>e and λ(n) are coprime</li>
+    </ul>
+    <p class="blurb2">
+        Two given coprime numbers are numbers whose greatest common factor is 
+        1. That is, there is no positive whole number other than 1 by which 
+        both of the given numbers can be evenly divided. If the value of λ(n) 
+        is 5166, then 3457 meets both conditions for being the value of e.
+    </p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo4()">Previous</button>
+        <button class="forwardButton" onclick="goToRSAInfo6()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo6Container">
+    <p class="label2">d is the most complicated number in RSA.</p>
+    <p class="blurb2">
+        The mathematical definition of d is the modular multiplicative inverse 
+        of e modulo λ(n). To understand this, you first must understand the 
+        basic idea of modular arithmetic.
+    </p>
+    <div class="hContainer">
+        <img style="max-width: 85%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Clock_group.svg/840px-Clock_group.svg.png" alt="Math on a clock face">
+    </div>  
+    <p class="blurb2">
+        Modular arithmetic is essentially just math on a clockface. The modulo is 
+        the range of numbers on that clock face, which start at zero. A regular 
+        clockface with the number 12 replaced by 0 represents modular 
+        arithmetic in modulo 12, for example. Here, 9 + 4 = 1, and  5 &times; 4 
+        = 8. It thus can be said that 13 = 1 modulo 12, and 20 = 8 modulo 12.
+    </p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo5()">Previous</button>
+        <button class="forwardButton" onclick="goToRSAInfo7()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo7Container">
+    <p class="label2">What is a modular multiplicative inverse?</p>
+    <p class="blurb2">
+        Before getting into modular multiplicative inverses, let's clarify on 
+        what a regular multiplicative inverse is. The multiplicative inverse of 
+        a given number, in any case, is the number by which that given number 
+        must be multiplied to get a product of 1. 
+        <br><br>
+        Outside of modular arithmetic, this involves fractions. For example, 
+        the multiplicative inverse of 6 is <sup>1</sup>&frasl;<sub>6</sub>, and 
+        the multiplicative inverse of <sup>3</sup>&frasl;<sub>2</sub> is 
+        <sup>2</sup>&frasl;<sub>3</sub>.
+        <br><br>
+        In modular arithmetic, however, the concept of clock math with whole 
+        numbers is involved. A modular multiplicative inverse, then, is a
+        positive whole number that acts as a multiplicative inverse when doing 
+        clock math. Going back to the idea of a 0-11 clockface, the modular 
+        multiplicative inverse of 17 modulo 12 would be 5, as 17 &times; 5 = 85 
+        and 85 = 1 modulo 12.
+    </p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo6()">Previous</button>
+        <button class="forwardButton" onclick="goToRSAInfo8()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo8Container">
+    <p class="label2">Now you (hopefully) know how d is calculated!</p>
+    <p class="bigLabel">d = 3709</p>
+    <p class="blurb2">
+        With a bit of number-crunching, we can find 3709 as the modular 
+        multiplicative inverse of e modulo λ(n) and thus the value of d. Now 
+        that we have n, e, and d, we can encrypt and decrypt messages 
+        represented by numbers! Below are the formulas for this, where m is the 
+        original message and c is the encrypted message.
+    </p>
+    <p class="bigLabel">c = m<sup>e</sup> modulo n</p>
+    <p class="bigLabel">m = c<sup>d</sup> modulo n</p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo7()">Previous</button>
+        <button class="forwardButton" onclick="goToRSAInfo9()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo9Container">
+    <p class="label2">Let's try some sample values!</p>
+    <p class="blurb2">If the message can be represented by the number 7:</p>
+    <p class="bigLabel">c = 7<sup>3457</sup> = 4049 modulo 10541</p>
+    <p class="bigLabel">m = 4049<sup>3709</sup> = 7 modulo 10541</p>
+    <p class="blurb2">If the message is 146:</p>
+    <p class="bigLabel">c = 146<sup>3457</sup> = 5734 modulo 10541</p>
+    <p class="bigLabel">m = 5734<sup>3709</sup> = 146 modulo 10541</p>
+    <p class="blurb2">
+        As long as the input is not too large, RSA can provide great encryption 
+        for all sorts of data. Input size can get fairly large with a good RSA 
+        implementation, though. This is because, as you are about to see, RSA 
+        actually uses <b><i>FAR</i></b> larger numbers than these.
+    </p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo8()">Previous</button>
+        <button class="forwardButton" onclick="goToRSAInfo10()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSAInfo10Container">
+    <p class="label2">Why is RSA secure?</p>
+    <p class="blurb2">
+        The algorithm that you are about to be able to try out is RSA-2048. 
+        2048 represents the number of bits in a key. This may not seem like it 
+        would result in incomprehensibly large numbers, but let's analyze it. 
+        To brute force an RSA key, which means simply guessing key values until 
+        the correct one is found, it would take an average of testing about 
+        2<sup>2046</sup> different key values. Here is what that number is.
+        <br><br>
+        8 079 251 517 827 751 825 178 719 172 167 487 990 111 025 667 428 871 008 032 586 356 881 163 784 716 972 723 299 300 352 880 728 365 922 179 490 230 474 504 873 529 889 787 622 730 273 772 038 096 612 070 780 157 719 341 825 249 022 937 549 437 597 413 026 699 014 409 596 016 892 069 198 054 660 654 939 040 459 523 584 619 042 617 645 411 463 009 076 260 721 893 972 885 266 452 151 888 099 780 982 596 380 478 583 347 417 085 605 171 243 696 641 142 373 714 044 008 831 580 514 519 451 414 832 756 548 177 115 078 537 564 648 216 044 279 181 485 900 929 615 464 339 399 587 788 075 411 476 100 924 403 308 321 807 806 781 421 177 705 052 431 289 275 431 732 830 867 419 635 645 164 174 483 761 499 317 088 249 659 553 881 291 597 359 333 885 900 533 858 307 401 161 329 619 651 238 037 048 388 963 402 764 899 057 664
+        <br><br>
+        Add another order of magnitude to that for the worst case when brute 
+        forcing. For scale, the estimated number of subatomic particles in the 
+        entire observable universe sits below a measly 2<sup>268</sup>. Here is 
+        what that number is.
+        <br><br>
+        474 284 397 516 047 136 454 946 754 595 585 670 566 993 857 190 463 750 305 618 264 096 412 179 005 177 856
+        <br><br>
+        The true scale of these numbers is staggering. Over ten million 
+        hydrogen atoms, which each typically have two particles, can fit on the 
+        head of a pin. Compare the scale of a pinhead to the entire universe. 
+        There could, in fact, exist a full-sized copy of the universe for every 
+        particle in our universe, and the total number of particles in all of 
+        those universes would still be dwarfed by the average number of 
+        attempts needed to brute force RSA. Every particle in those copies of 
+        the universe could have its own copy of the universe, but this still 
+        would not be enough. This fact persists seven layers down, as 
+        (2<sup>268</sup>)<sup>7</sup> is much less than 2<sup>2046</sup>.
+        <br><br>
+        Going through all possible RSA-2048 keys will take you quite a bit 
+        longer than something like your typical combination lock.
+    </p>
+    <br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo9()">Previous</button>
+        <button class="forwardButton" onclick="goToRSADemo1()">Next</button>
+    </div>
+</div>
+<div style="display: none;" id="RSADemo1Container">
+    <p class="label2">Try out RSA! Enter a short message.</p>
+    <div class="hContainer">
+        <textarea class="messageInput" id="RSAMsgInput"></textarea>
+        <button class="sendMessageButton" onclick="setMsgRSA()">Send</button>
+    </div>
+    <br><br>
+    <div class="hContainer">
+        <button class="generatorButton" onclick="runRSA(true)" id="runRSAButton">Make new keys</button>
+        <br><br>
+        <div class="hContainer"><p class="RSANumName">p: </p><div class="bigIntDisplay" id="RSAPDisplay">not set</div></div>
+        <br>
+        <div class="hContainer"><p class="RSANumName">q: </p><div class="bigIntDisplay" id="RSAQDisplay">not set</div></div>
+        <br>
+        <div class="hContainer"><p class="RSANumName">n: </p><div class="bigIntDisplay" id="RSANDisplay">not set</div></div>
+        <br>
+        <div class="hContainer"><p class="RSANumName">λ(n): </p><div class="bigIntDisplay" id="RSALambdaNDisplay">not set</div></div>
+        <br>
+        <div class="hContainer"><p class="RSANumName">e: </p><div class="bigIntDisplay" id="RSAEDisplay">not set</div></div>
+        <br>
+        <div class="hContainer"><p class="RSANumName">d: </p><div class="bigIntDisplay" id="RSADDisplay">not set</div></div>
+        <br>
+        <div class="hContainer"><p class="RSANumName">c: </p><div class="bigIntDisplay" id="RSACDisplay">not calculated</div></div>
+        <br>
+        <div class="hContainer"><p class="RSANumName">m (the final message): </p><div class="bigIntDisplay" id="RSAMDisplay">not calculated</div></div>
+        <br>
+        <div class="hContainer"><p class="RSANumName">m as text: </p><div class="bigIntDisplay" id="RSAFinalMsgDisplay">not calculated</div></div>
+    </div>
+    <br><br>
+    <div class="hContainer">
+        <button class="backButton" onclick="goToRSAInfo10()">Previous</button>
+        <button class="forwardButton" onclick="goToHome()">Home</button>
+    </div>
+</div>
+</body>
+<style type="text/css">
+    body {
+        background-color:rgb(63, 73, 63);
+    }
+    .hContainer {
+        text-align: center;
+    }
+    .vContainer {
+    	width: 35%;
+        text-align: center;
+        align-items: center;
+        vertical-align: text-top;
+        display: inline-block;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .bigLabel {
+        font-family:'Courier New', Courier, monospace;
+        font-weight: bolder;
+        font-size: xx-large;
+        text-align: center;
+        color: rgb(255, 191, 0);
+    }
+    .bigLabel2 {
+        font-family:'Courier New', Courier, monospace;
+        font-weight: bolder;
+        font-size: xx-large;
+        text-align: center;
+        color: rgb(0, 191, 255);
+    }
+    .label {
+        font-family:'Courier New', Courier, monospace;
+        font-weight: bolder;
+        font-size: x-large;
+        text-align: center;
+        color: rgb(255, 191, 0);
+    }
+    .label2 {
+        font-family:'Courier New', Courier, monospace;
+        font-weight: bolder;
+        font-size: x-large;
+        text-align: center;
+        color: rgb(0, 191, 255);
+    }
+    .smallLabel {
+        font-family:'Courier New', Courier, monospace;
+        font-weight: bold;
+        font-size: large;
+        text-align: center;
+        color: rgb(255, 191, 191);
+    }
+    .vertLabel {
+    	font-family:'Courier New', Courier, monospace;
+        font-weight: bolder;
+        font-size: x-large;
+        vertical-align: text-top;
+    	display: inline-block;
+        margin-left: 2%;
+        margin-right: 2%;
+        color: rgb(255, 191, 191);
+    }
+    .menuButton {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: xx-large;
+        font-weight: bold;
+        background-color: coral;
+        color: black;
+        border-radius: 0.5em;
+        border-width: 0.1em;
+        display: inline;
+        width: 100%;
+        height: 3em;
+    }
+    .menuButton:hover {
+        background-color: rgb(255, 191, 127);
+        cursor: pointer;
+    }
+    .blurb {
+        font-family:'Courier New', Courier, monospace;
+        font-size: large;
+        text-align: left;
+        color: rgb(255, 191, 191);
+    }
+    .blurb2 {
+        font-family:'Courier New', Courier, monospace;
+        font-size: large;
+        text-align: left;
+        color: rgb(191, 191, 255);
+    }
+    .finalMsgDisplay {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: larger;
+        font-weight: bold;
+        width: fit-content;
+        padding-left: 1%;
+        padding-right: 1%;
+        margin: auto;
+        text-align: center;
+        background-color: lightgray;
+    }
+    .bigIntDisplay {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: larger;
+        font-weight: bold;
+        word-wrap: break-word;
+        max-width: 80%;
+        display: inline-block;
+        padding-left: 1%;
+        padding-right: 1%;
+        margin: auto;
+        text-align: center;
+        vertical-align: text-top;
+        background-color: lightgray;
+    }
+    .diagram {
+        max-width: 40%;
+        max-height: 15em;
+        margin: 4%;
+        vertical-align: middle;
+    }
+    .diagram2 {
+        max-width: 100%;
+        max-height: 15em;
+        vertical-align: middle;
+    }
+    .backButton {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: large;
+        text-align: center;
+        background-color: indianred;
+        color: white;
+        border-radius: 1.25em;
+        border-width: 0.1em;
+        height: 2em;
+        width: 40%;
+        display: inline;
+    }
+    .backButton:hover {
+        background-color: rgb(255, 128, 128);
+        cursor: pointer;
+    }
+    .forwardButton {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: large;
+        text-align: center;
+        background-color: cornflowerblue;
+        color: white;
+        border-radius: 1.25em;
+        border-width: 0.1em;
+        height: 2em;
+        width: 40%;
+        margin-left: 4%;
+        margin-left: 4%;
+        display: inline;
+    }
+    .forwardButton:hover {
+        background-color: lightblue;
+        cursor: pointer;
+    }
+    .lockedForwardButton {
+        display: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: large;
+        text-align: center;
+        background-color: cornflowerblue;
+        color: white;
+        border-radius: 1.25em;
+        border-width: 0.1em;
+        height: 2em;
+        width: 40%;
+        margin-left: 4%;
+        margin-left: 4%;
+    }
+    .lockedForwardButton:hover {
+        background-color: lightblue;
+        cursor: pointer;
+    }
+    .sendMessageButton {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: x-large;
+        text-align: center;
+        background-color: lightgray;
+        color: black;
+        border-radius: 1em;
+        border-width: 0.1em;
+        max-width: 17.5%;
+        min-width: 17.5%;
+        height: 2.5em;
+        margin-left: 2%;
+        margin-right: 2%;
+        vertical-align: middle;
+        display: inline;
+    }
+    .sendMessageButton:hover {
+        background-color: rgb(247, 247, 247);
+        cursor: pointer;
+    }
+    .generatorButton {
+        display: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: large;
+        text-align: center;
+        background-color: lightgray;
+        color: black;
+        border-radius: 1em;
+        border-width: 0.1em;
+        width: 80%;
+        height: 2.5em;
+        vertical-align: middle;
+    }
+    .generatorButton:hover {
+        background-color: rgb(247, 247, 247);
+        cursor: pointer;
+    }
+    .messageInput {
+        resize: none;
+        height: 2.5em;
+        width: 70%;
+        margin-left: 2%;
+        margin-right: 2%;
+        vertical-align: middle;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: x-large;
+        display: inline;
+    }
+    .AESMatrix {
+        border: 1px solid;
+        border-color: black;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: large;
+        font-weight: bold;
+        background-color: lightgray;
+        width: 8.5em;
+        height: 2em;
+        margin: auto;
+    }
+    .RSANumName {
+        font-family:'Courier New', Courier, monospace;
+        font-weight: bolder;
+        font-size: x-large;
+        color: rgb(255, 191, 0);
+        width: fit-content;
+        display: inline;
+    }
+</style>
+<script type="text/javascript">
+    function goToHome() {
+        document.getElementById("page").style.setProperty("background-color", "rgb(63, 73, 63)");
+        document.getElementById("AESInfo1Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo6Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo1Container").style.setProperty("display", "none");
+        document.getElementById("RSADemo1Container").style.setProperty("display", "none");
+        document.getElementById("mainMenuContainer").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToAESInfo1() {
+        document.getElementById("page").style.setProperty("background-color", "darkcyan");
+        document.getElementById("mainMenuContainer").style.setProperty("display", "none");
+        document.getElementById("AESInfo2Container").style.setProperty("display", "none");
+        document.getElementById("AESInfo1Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToAESInfo2() {
+        document.getElementById("AESInfo1Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo1Container").style.setProperty("display", "none");
+        document.getElementById("AESInfo2Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToAESDemo1() {
+        document.getElementById("AESInfo2Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo2Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo1Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToAESDemo2() {
+        document.getElementById("AESDemo1Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo3Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo2Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToAESDemo3() {
+        document.getElementById("AESDemo2Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo4Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo3Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToAESDemo4() {
+        document.getElementById("AESDemo3Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo5Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo4Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToAESDemo5() {
+        document.getElementById("AESDemo4Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo6Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo5Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToAESDemo6() {
+        document.getElementById("AESDemo5Container").style.setProperty("display", "none");
+        document.getElementById("AESDemo6Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo1() {
+        document.getElementById("page").style.setProperty("background-color", "rgb(139, 63, 63)");
+        document.getElementById("mainMenuContainer").style.setProperty("display", "none");
+        document.getElementById("RSAInfo2Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo1Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo2() {
+        document.getElementById("RSAInfo1Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo3Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo2Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo3() {
+        document.getElementById("RSAInfo2Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo4Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo3Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo4() {
+        document.getElementById("RSAInfo3Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo5Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo4Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo5() {
+        document.getElementById("RSAInfo4Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo6Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo5Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo6() {
+        document.getElementById("RSAInfo5Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo7Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo6Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo7() {
+        document.getElementById("RSAInfo6Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo8Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo7Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo8() {
+        document.getElementById("RSAInfo7Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo9Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo8Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo9() {
+        document.getElementById("RSAInfo8Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo10Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo9Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSAInfo10() {
+        document.getElementById("RSAInfo9Container").style.setProperty("display", "none");
+        document.getElementById("RSADemo1Container").style.setProperty("display", "none");
+        document.getElementById("RSAInfo10Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    function goToRSADemo1() {
+        document.getElementById("RSAInfo10Container").style.setProperty("display", "none");
+        document.getElementById("RSADemo1Container").style.setProperty("display", "contents");
+        window.scrollTo(0, 0);
+    }
+    // AES STUFF
+    var aesRan = false;
+    var msg = "";
+    var initVector = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+    ];
+    var firstIV = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+    ];
+    var firstKey = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
+    ];
+    var roundKeys = [
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+    ];
+    var stateMatrix = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+    ];
+    const S_BOX = [
+        0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe,
+        0xd7, 0xab, 0x76, 0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4,
+        0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0, 0xb7, 0xfd, 0x93, 0x26, 0x36, 0x3f, 0xf7,
+        0xcc, 0x34, 0xa5, 0xe5, 0xf1, 0x71, 0xd8, 0x31, 0x15, 0x04, 0xc7, 0x23, 0xc3,
+        0x18, 0x96, 0x05, 0x9a, 0x07, 0x12, 0x80, 0xe2, 0xeb, 0x27, 0xb2, 0x75, 0x09,
+        0x83, 0x2c, 0x1a, 0x1b, 0x6e, 0x5a, 0xa0, 0x52, 0x3b, 0xd6, 0xb3, 0x29, 0xe3,
+        0x2f, 0x84, 0x53, 0xd1, 0x00, 0xed, 0x20, 0xfc, 0xb1, 0x5b, 0x6a, 0xcb, 0xbe,
+        0x39, 0x4a, 0x4c, 0x58, 0xcf, 0xd0, 0xef, 0xaa, 0xfb, 0x43, 0x4d, 0x33, 0x85,
+        0x45, 0xf9, 0x02, 0x7f, 0x50, 0x3c, 0x9f, 0xa8, 0x51, 0xa3, 0x40, 0x8f, 0x92,
+        0x9d, 0x38, 0xf5, 0xbc, 0xb6, 0xda, 0x21, 0x10, 0xff, 0xf3, 0xd2, 0xcd, 0x0c,
+        0x13, 0xec, 0x5f, 0x97, 0x44, 0x17, 0xc4, 0xa7, 0x7e, 0x3d, 0x64, 0x5d, 0x19,
+        0x73, 0x60, 0x81, 0x4f, 0xdc, 0x22, 0x2a, 0x90, 0x88, 0x46, 0xee, 0xb8, 0x14,
+        0xde, 0x5e, 0x0b, 0xdb, 0xe0, 0x32, 0x3a, 0x0a, 0x49, 0x06, 0x24, 0x5c, 0xc2,
+        0xd3, 0xac, 0x62, 0x91, 0x95, 0xe4, 0x79, 0xe7, 0xc8, 0x37, 0x6d, 0x8d, 0xd5,
+        0x4e, 0xa9, 0x6c, 0x56, 0xf4, 0xea, 0x65, 0x7a, 0xae, 0x08, 0xba, 0x78, 0x25,
+        0x2e, 0x1c, 0xa6, 0xb4, 0xc6, 0xe8, 0xdd, 0x74, 0x1f, 0x4b, 0xbd, 0x8b, 0x8a,
+        0x70, 0x3e, 0xb5, 0x66, 0x48, 0x03, 0xf6, 0x0e, 0x61, 0x35, 0x57, 0xb9, 0x86,
+        0xc1, 0x1d, 0x9e, 0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94, 0x9b, 0x1e,
+        0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf, 0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42,
+        0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16
+    ];
+    const S_BOX_INVERSE = [
+        0x52, 0x09, 0x6a, 0xd5, 0x30, 0x36, 0xa5, 0x38, 0xbf, 0x40, 0xa3, 0x9e, 0x81,
+        0xf3, 0xd7, 0xfb, 0x7c, 0xe3, 0x39, 0x82, 0x9b, 0x2f, 0xff, 0x87, 0x34, 0x8e,
+        0x43, 0x44, 0xc4, 0xde, 0xe9, 0xcb, 0x54, 0x7b, 0x94, 0x32, 0xa6, 0xc2, 0x23,
+        0x3d, 0xee, 0x4c, 0x95, 0x0b, 0x42, 0xfa, 0xc3, 0x4e, 0x08, 0x2e, 0xa1, 0x66,
+        0x28, 0xd9, 0x24, 0xb2, 0x76, 0x5b, 0xa2, 0x49, 0x6d, 0x8b, 0xd1, 0x25, 0x72,
+        0xf8, 0xf6, 0x64, 0x86, 0x68, 0x98, 0x16, 0xd4, 0xa4, 0x5c, 0xcc, 0x5d, 0x65,
+        0xb6, 0x92, 0x6c, 0x70, 0x48, 0x50, 0xfd, 0xed, 0xb9, 0xda, 0x5e, 0x15, 0x46,
+        0x57, 0xa7, 0x8d, 0x9d, 0x84, 0x90, 0xd8, 0xab, 0x00, 0x8c, 0xbc, 0xd3, 0x0a,
+        0xf7, 0xe4, 0x58, 0x05, 0xb8, 0xb3, 0x45, 0x06, 0xd0, 0x2c, 0x1e, 0x8f, 0xca,
+        0x3f, 0x0f, 0x02, 0xc1, 0xaf, 0xbd, 0x03, 0x01, 0x13, 0x8a, 0x6b, 0x3a, 0x91,
+        0x11, 0x41, 0x4f, 0x67, 0xdc, 0xea, 0x97, 0xf2, 0xcf, 0xce, 0xf0, 0xb4, 0xe6,
+        0x73, 0x96, 0xac, 0x74, 0x22, 0xe7, 0xad, 0x35, 0x85, 0xe2, 0xf9, 0x37, 0xe8,
+        0x1c, 0x75, 0xdf, 0x6e, 0x47, 0xf1, 0x1a, 0x71, 0x1d, 0x29, 0xc5, 0x89, 0x6f,
+        0xb7, 0x62, 0x0e, 0xaa, 0x18, 0xbe, 0x1b, 0xfc, 0x56, 0x3e, 0x4b, 0xc6, 0xd2,
+        0x79, 0x20, 0x9a, 0xdb, 0xc0, 0xfe, 0x78, 0xcd, 0x5a, 0xf4, 0x1f, 0xdd, 0xa8,
+        0x33, 0x88, 0x07, 0xc7, 0x31, 0xb1, 0x12, 0x10, 0x59, 0x27, 0x80, 0xec, 0x5f,
+        0x60, 0x51, 0x7f, 0xa9, 0x19, 0xb5, 0x4a, 0x0d, 0x2d, 0xe5, 0x7a, 0x9f, 0x93,
+        0xc9, 0x9c, 0xef, 0xa0, 0xe0, 0x3b, 0x4d, 0xae, 0x2a, 0xf5, 0xb0, 0xc8, 0xeb,
+        0xbb, 0x3c, 0x83, 0x53, 0x99, 0x61, 0x17, 0x2b, 0x04, 0x7e, 0xba, 0x77, 0xd6,
+        0x26, 0xe1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0c, 0x7d
+    ];
+    function displayMatrix(matrix, tableId) {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                document.getElementById(tableId).rows[i].cells[j].innerText = matrix[i][j].toString(16).padStart(2, '0');
+            }
+        }
+    }
+    function setMsgAES() {
+        msg = document.getElementById("AESMsgInput").value;
+        document.getElementById("AESMsgInput").value = "";
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                if ((i * 4) + j < msg.length) {
+                    stateMatrix[i][j] = msg.charCodeAt((i * 4) + j);
+                }
+                else {
+                    stateMatrix[i][j] = 0;
+                }
+            }
+        }
+        displayMatrix(stateMatrix, "AESTable1");
+        if (aesRan) {
+            runAES(false);
+        }
+        else {
+            document.getElementById("runAESButton").style.setProperty("display", "initial");
+        }
+    }
+    function runAES(newKeys) {
+        if (newKeys) {
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 4; j++) {
+                    initVector[i][j] = Math.floor(Math.random() * 256);
+                    firstIV[i][j] = initVector[i][j];
+                    firstKey[i][j] = Math.floor(Math.random() * 256);
+                }
+            }
+            let currentRoundKey = [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]
+            ];
+            let currentRoundWord;
+            for (let i = 1; i < 11; i++) {
+                for (let j = 0; j < 4; j++) {
+                    currentRoundWord = roundWord(firstKey, (i * 4) + j);
+                    for (let k = 0; k < 4; k++) {
+                        roundKeys[i - 1][j][k] = Math.floor(currentRoundWord / ((3 - k) * 8)) % 256;
+                    }
+                }
+            }
+            displayMatrix(firstKey, "AESTable2");
+        }
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                if ((i * 4) + j < msg.length) {
+                    stateMatrix[i][j] = msg.charCodeAt((i * 4) + j);
+                }
+                else {
+                    stateMatrix[i][j] = 0;
+                }
+            }
+        }
+        stateMatrix = xorMatrix(stateMatrix, initVector);
+        displayMatrix(stateMatrix, "AESTable3");
+        stateMatrix = xorMatrix(stateMatrix, firstKey);
+        displayMatrix(stateMatrix, "AESTable4");
+        for (let round = 0; round < 9; round++) {
+            stateMatrix = subMatrix(stateMatrix);
+            if (round == 0) {
+                displayMatrix(stateMatrix, "AESTable6");
+            }
+            stateMatrix = shiftMatrix(stateMatrix);
+            if (round == 0) {
+                displayMatrix(stateMatrix, "AESTable7");
+            }
+            stateMatrix = mixMatrix(stateMatrix);
+            if (round == 0) {
+                displayMatrix(stateMatrix, "AESTable8");
+            }
+            stateMatrix = xorMatrix(stateMatrix, roundKeys[round]);
+            if (round == 0) {
+                displayMatrix(stateMatrix, "AESTable9");
+            }
+        }
+        stateMatrix = subMatrix(stateMatrix);
+        stateMatrix = shiftMatrix(stateMatrix);
+        stateMatrix = xorMatrix(stateMatrix, roundKeys[9]);
+        displayMatrix(stateMatrix, "AESTable10");
+        // DECRYPTION
+        // FIRST DECRYPTION ROUND
+        stateMatrix = xorMatrix(stateMatrix, roundKeys[9]);
+        stateMatrix = invShiftMatrix(stateMatrix);
+        stateMatrix = invSubMatrix(stateMatrix);
+        // 9 MAIN DECRYPTION ROUNDS
+        for (let round = 8; round >= 0; round--) {
+            stateMatrix = xorMatrix(stateMatrix, roundKeys[round]);
+            if (round == 8) {
+                displayMatrix(stateMatrix, "AESTable11");
+            }
+            stateMatrix = invMixMatrix(stateMatrix);
+            if (round == 8) {
+                displayMatrix(stateMatrix, "AESTable12");
+            }
+            stateMatrix = invShiftMatrix(stateMatrix);
+            if (round == 8) {
+                displayMatrix(stateMatrix, "AESTable13");
+            }
+            stateMatrix = invSubMatrix(stateMatrix);
+            if (round == 8) {
+                displayMatrix(stateMatrix, "AESTable14");
+            }
+        }
+        stateMatrix = xorMatrix(stateMatrix, firstKey);
+        // XOR with IV
+        stateMatrix = xorMatrix(stateMatrix, initVector);
+        displayMatrix(stateMatrix, "AESTable15");
+        msg = "";
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                msg += String.fromCharCode(stateMatrix[i][j]);
+            }
+        }
+        document.getElementById("AESFinalMsgDisplay").innerText = msg;
+        document.getElementById("AESDemo1ForwardButton").style.setProperty("display", "inline");
+        aesRan = true;
+    }
+    function subWord(word) {
+        let result = 0;
+        for (let i = 0; i < 4; i++) {
+            result += S_BOX[word % 256] * (2 ** (i * 8));
+            word = Math.floor(word / 256);
+        }
+        return result;
+    }
+    function rotWord(word) {
+        let leftByte = Math.floor(word / (2 ** 24));
+        return ((word * 256) % (2 ** 32)) + leftByte;
+    }
+    function invRotWord(word) {
+        let rightByte = word % 256;
+        return Math.floor(word / 256) + ((rightByte * (2 ** 24)) % (2 ** 32));
+    }
+    function rcon(rndNum) {
+        if (rndNum == 1) {
+            return 0x01000000;
+        }
+        else if (rcon(rndNum - 1) < 0x80000000) {
+            return ((2 * rcon(rndNum - 1)) % (2 ** 32));
+        }
+        else {
+            return ((((2 * rcon(rndNum - 1)) % (2 ** 32)) ^ 0x11b) * (2 ** 24))
+                % (2 ** 32);
+        }
+    }
+    // I don't know why, I don't want to know why, I don't want to wonder why, but
+    // this function returns negatives sometimes.
+    function dumbRoundWord(firstKey, wordNum) {
+        if (wordNum < 4) {
+            return (firstKey[wordNum][0] * (2 ** 24)) +
+                (firstKey[wordNum][1] * (2 ** 16)) +
+                (firstKey[wordNum][2] * (2 ** 8)) +
+                firstKey[wordNum][3];
+        }
+        else if (wordNum >= 4 && wordNum % 4 == 0) {
+            return roundWord(firstKey, wordNum - 4) ^
+                subWord(rotWord(roundWord(firstKey, wordNum - 1))) ^
+                rcon(Math.floor(wordNum / 4));
+        }
+        else {
+            return roundWord(firstKey, wordNum - 4) ^
+                roundWord(firstKey, wordNum - 1);
+        }
+    }
+    function roundWord(firstKey, wordNum) {
+        return Math.abs(dumbRoundWord(firstKey, wordNum));
+    }
+    function gmul(a, b) {
+        let p = 0;
+        let carry;
+        for (let i = 0; i < 8; i++) {
+            if (b % 2 == 1) {
+                p ^= a;
+            }
+            b = Math.floor(b / 2);
+            carry = a >> 7;
+            a = (a * 2) % 256;
+            if (carry == 1) {
+                a ^= 0x1b;
+            }
+        }
+        return p;
+    }
+    function xorMatrix(toXor, xorWith) {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                toXor[i][j] ^= xorWith[i][j];
+            }
+        }
+        return toXor;
+    }
+    function subMatrix(toSub) {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                toSub[i][j] = S_BOX[toSub[i][j]];
+            }
+        }
+        return toSub;
+    }
+    function invSubMatrix(toSub) {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                toSub[i][j] = S_BOX_INVERSE[toSub[i][j]];
+            }
+        }
+        return toSub;
+    }
+    function shiftMatrix(toShift) {
+        let currentWord = 0;
+        for (let i = 1; i < 4; i++) {
+            currentWord = ((toShift[i][0] * (2 ** 24)) % (2 ** 32)) +
+                ((toShift[i][1] * (2 ** 16)) % (2 ** 32)) +
+                ((toShift[i][2] * (2 ** 8)) % (2 ** 32)) +
+                (toShift[i][3]);
+            for (let j = 0; j < i; j++) {
+                currentWord = rotWord(currentWord);
+            }
+            toShift[i][0] = Math.floor(currentWord / (2 ** 24));
+            toShift[i][1] = Math.floor(currentWord / (2 ** 16)) % 256;
+            toShift[i][2] = Math.floor(currentWord / (2 ** 8)) % 256;
+            toShift[i][3] = currentWord % 256;
+        }
+        return toShift;
+    }
+    function invShiftMatrix(toShift) {
+        let currentWord = 0;
+        for (let i = 1; i < 4; i++) {
+            currentWord = ((toShift[i][0] * (2 ** 24)) % (2 ** 32)) +
+                ((toShift[i][1] * (2 ** 16)) % (2 ** 32)) +
+                ((toShift[i][2] * (2 ** 8)) % (2 ** 32)) +
+                (toShift[i][3]);
+            for (let j = 0; j < i; j++) {
+                currentWord = invRotWord(currentWord);
+            }
+            toShift[i][0] = Math.floor(currentWord / (2 ** 24));
+            toShift[i][1] = Math.floor(currentWord / (2 ** 16)) % 256;
+            toShift[i][2] = Math.floor(currentWord / (2 ** 8)) % 256;
+            toShift[i][3] = currentWord % 256;
+        }
+        return toShift;
+    }
+    function mixMatrix(toMix) {
+        let res = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0]
+        ];
+        for (let i = 0; i < 4; i++) {
+            res[0][i] = gmul(2, toMix[0][i]) ^ gmul(3, toMix[1][i]) ^ gmul(1, toMix[2][i]) ^ gmul(1, toMix[3][i]);
+            res[1][i] = gmul(1, toMix[0][i]) ^ gmul(2, toMix[1][i]) ^ gmul(3, toMix[2][i]) ^ gmul(1, toMix[3][i]);
+            res[2][i] = gmul(1, toMix[0][i]) ^ gmul(1, toMix[1][i]) ^ gmul(2, toMix[2][i]) ^ gmul(3, toMix[3][i]);
+            res[3][i] = gmul(3, toMix[0][i]) ^ gmul(1, toMix[1][i]) ^ gmul(1, toMix[2][i]) ^ gmul(2, toMix[3][i]);
+        }
+        return res;
+    }
+    function invMixMatrix(toMix) {
+        let res = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0]
+        ];
+        for (let i = 0; i < 4; i++) {
+            res[0][i] = gmul(14, toMix[0][i]) ^ gmul(11, toMix[1][i]) ^ gmul(13, toMix[2][i]) ^ gmul(9, toMix[3][i]);
+            res[1][i] = gmul(9, toMix[0][i]) ^ gmul(14, toMix[1][i]) ^ gmul(11, toMix[2][i]) ^ gmul(13, toMix[3][i]);
+            res[2][i] = gmul(13, toMix[0][i]) ^ gmul(9, toMix[1][i]) ^ gmul(14, toMix[2][i]) ^ gmul(11, toMix[3][i]);
+            res[3][i] = gmul(11, toMix[0][i]) ^ gmul(13, toMix[1][i]) ^ gmul(9, toMix[2][i]) ^ gmul(14, toMix[3][i]);
+        }
+        return res;
+    }
+
+    // RSA STUFF
+    var rsaRan = false;
+    var p = 0n, q = 0n, n = 0n, lambdaN = 0n, e = 0n, d = 0n, msgAsBigInt = 0n;
+    
+    function setMsgRSA() {
+        msg = document.getElementById("RSAMsgInput").value;
+        document.getElementById("RSAMsgInput").value = "";
+        msgAsBigInt = 0n;
+        for (let i = 0; i < msg.length; i++) {
+            msgAsBigInt += BigInt(msg.charCodeAt(i) * (256 ** (msg.length - 1 - i)));
+        }
+        if (rsaRan) {
+            runRSA(false);
+        }
+        else {
+            document.getElementById("runRSAButton").style.setProperty("display", "initial");
+        }
+    }
+
+    function runRSA(newKeys) {
+        if (newKeys) {
+            p = randomPrime(512, 40);
+            q = randomPrime(512, 40);
+            n = p * q;
+            lambdaN = (p - 1n) * (q - 1n) / gcd(p - 1n, q - 1n);
+            for (let i = 0; i < 1024; i += 32) {
+                e += BigInt(Math.floor(Math.random() * (2 ** 32))) << BigInt(i);
+            }
+            while (gcd(e, lambdaN) != 1n) {
+                e++;
+            }
+            let num = e;
+            let mod = lambdaN;
+            let inv = 1n;
+            let invPrev = 0n;
+            let temp;
+            while (num != 0n) {
+                temp = inv;
+                inv = invPrev - (mod / num) * inv;
+                invPrev = temp;
+                temp = mod;
+                mod = num;
+                num = temp % num;
+            }
+            d = invPrev > 0n ? invPrev % lambdaN : lambdaN + invPrev;
+            document.getElementById("RSAPDisplay").innerText = p.toString(16);
+            document.getElementById("RSAQDisplay").innerText = q.toString(16);
+            document.getElementById("RSANDisplay").innerText = n.toString(16);
+            document.getElementById("RSALambdaNDisplay").innerText = lambdaN.toString(16);
+            document.getElementById("RSAEDisplay").innerText = e.toString(16);
+            document.getElementById("RSADDisplay").innerText = d.toString(16);
+        }
+        msgAsBigInt = encrypt(msgAsBigInt);
+        document.getElementById("RSACDisplay").innerText = msgAsBigInt.toString(16);
+        msgAsBigInt = decrypt(msgAsBigInt);
+        document.getElementById("RSAMDisplay").innerText = msgAsBigInt.toString(16);
+        msg = "";
+        let mABI = msgAsBigInt;
+        while (mABI != 0n) {
+            msg = String.fromCharCode(Number(mABI % 256n)) + msg;
+            mABI >>= 8n;
+        }
+        document.getElementById("RSAFinalMsgDisplay").innerText = msg;
+        rsaRan = true;
+    }
+
+    function encrypt(num) { return modPow(num, e, n); } 
+
+    function decrypt(num) { return modPow(num, d, n); }
+
+    function randomPrime(bitsize, millerRabbinIterations) {
+        let smallPrimes = [
+            2,    3,    5,    7,    11,   13,   17,   19,   23,   29,   31,   37,
+            41,   43,   47,   53,   59,   61,   67,   71,   73,   79,   83,   89,
+            97,   101,  103,  107,  109,  113,  127,  131,  137,  139,  149,  151,
+            157,  163,  167,  173,  179,  181,  191,  193,  197,  199,  211,  223,
+            227,  229,  233,  239,  241,  251,  257,  263,  269,  271,  277,  281,
+            283,  293,  307,  311,  313,  317,  331,  337,  347,  349,  353,  359,
+            367,  373,  379,  383,  389,  397,  401,  409,  419,  421,  431,  433,
+            439,  443,  449,  457,  461,  463,  467,  479,  487,  491,  499,  503,
+            509,  521,  523,  541,  547,  557,  563,  569,  571,  577,  587,  593,
+            599,  601,  607,  613,  617,  619,  631,  641,  643,  647,  653,  659,
+            661,  673,  677,  683,  691,  701,  709,  719,  727,  733,  739,  743,
+            751,  757,  761,  769,  773,  787,  797,  809,  811,  821,  823,  827,
+            829,  839,  853,  857,  859 , 863,  877,  881,  883,  887,  907,  911,
+            919,  929,  937,  941,  947,  953,  967,  971,  977,  983,  991,  997,
+            1009, 1013, 1019, 1021, 1031, 1033, 1039, 1049, 1051, 1061, 1063, 1069,
+            1087, 1091, 1093, 1097, 1103, 1109, 1117, 1123, 1129, 1151, 1153, 1163,
+            1171, 1181, 1187, 1193, 1201, 1213, 1217, 1223, 1229, 1231, 1237, 1249,
+            1259, 1277, 1279, 1283, 1289, 1291, 1297, 1301, 1303, 1307, 1319, 1321,
+            1327, 1361, 1367, 1373, 1381, 1399, 1409, 1423, 1427, 1429, 1433, 1439,
+            1447, 1451, 1453, 1459, 1471, 1481, 1483, 1487, 1489, 1493, 1499, 1511,
+            1523, 1531, 1543, 1549, 1553, 1559, 1567, 1571, 1579, 1583, 1597, 1601,
+            1607, 1609, 1613, 1619, 1621, 1627, 1637, 1657, 1663, 1667, 1669, 1693,
+            1697, 1699, 1709, 1721, 1723, 1733, 1741, 1747, 1753, 1759, 1777, 1783,
+            1787, 1789, 1801, 1811, 1823, 1831, 1847, 1861, 1867, 1871, 1873, 1877,
+            1879, 1889, 1901, 1907, 1913, 1931, 1933, 1949, 1951, 1973, 1979, 1987,
+            1993, 1997, 1999, 2003, 2011, 2017, 2027, 2029, 2039, 2053, 2063, 2069,
+            2081, 2083, 2087, 2089, 2099, 2111, 2113, 2129, 2131, 2137, 2141, 2143,
+            2153, 2161, 2179, 2203, 2207, 2213, 2221, 2237, 2239, 2243, 2251, 2267,
+            2269, 2273, 2281, 2287, 2293, 2297, 2309, 2311, 2333, 2339, 2341, 2347,
+            2351, 2357, 2371, 2377, 2381, 2383, 2389, 2393, 2399, 2411, 2417, 2423,
+            2437, 2441, 2447, 2459, 2467, 2473, 2477, 2503, 2521, 2531, 2539, 2543,
+            2549, 2551, 2557, 2579, 2591, 2593, 2609, 2617, 2621, 2633, 2647, 2657,
+            2659, 2663, 2671, 2677, 2683, 2687, 2689, 2693, 2699, 2707, 2711, 2713,
+            2719, 2729, 2731, 2741, 2749, 2753, 2767, 2777, 2789, 2791, 2797, 2801,
+            2803, 2819, 2833, 2837, 2843, 2851, 2857, 2861, 2879, 2887, 2897, 2903,
+            2909, 2917, 2927, 2939, 2953, 2957, 2963, 2969, 2971, 2999, 3001, 3011,
+            3019, 3023, 3037, 3041, 3049, 3061, 3067, 3079, 3083, 3089, 3109, 3119,
+            3121, 3137, 3163, 3167, 3169, 3181, 3187, 3191, 3203, 3209, 3217, 3221,
+            3229, 3251, 3253, 3257, 3259, 3271, 3299, 3301, 3307, 3313, 3319, 3323,
+            3329, 3331, 3343, 3347, 3359, 3361, 3371, 3373, 3389, 3391, 3407, 3413,
+            3433, 3449, 3457, 3461, 3463, 3467, 3469, 3491, 3499, 3511, 3517, 3527,
+            3529, 3533, 3539, 3541, 3547, 3557, 3559, 3571
+        ];
+        let n, a, x, m;
+        outer: while (true) {
+            n = 0n
+            for (let i = 0; i < bitsize; i += 32) {
+                n += BigInt(Math.floor(Math.random() * (2 ** 32))) << BigInt(i);
+            }
+            if (n % 2n == 0n) {
+                n--;
+            }
+            for (let i = 0; i < smallPrimes.length; i++) {
+                if (n % BigInt(smallPrimes[i]) == 0n) {
+                    continue outer;
+                }
+            }
+            m = n - 1n;
+            while (m % 2n != 0n) {
+                m >>= 1n;
+            }
+            for (let i = 0; i < millerRabbinIterations; i++) {
+                a = 2n + BigInt(Math.floor(Math.random() * (2 ** bitsize)));
+                x = modPow(a, m, n);
+                if (x != 1n && x != n - 1n) {
+                    continue outer;
+                }
+            }
+            return n;
+        }
+    }
+
+    function gcd(a, b) {
+        if (a == b) {
+            return a;
+        }
+        let temp;
+        if (a < b) {
+            temp = a;
+            a = b;
+            b = temp;
+        }
+        while (b != 0n) {
+            temp = a;
+            a = b;
+            b = temp % b;
+        }
+        return a;
+    }
+
+    function modPow(num, pow, mod) {
+        if (mod == 1n) {
+            return 0n;
+        }
+        let result = 1n;
+        num %= mod;
+        while (pow > 0) {
+            if (pow % 2n == 1n) {
+                result = ((result % mod) * (num % mod)) % mod;
+            }
+            pow >>= 1n;
+            num = ((num % mod) * (num % mod)) % mod;
+        }
+        return result;
+    }
+</script>
+</html>
